@@ -1,0 +1,31 @@
+  JAVA-SCRIPT
+
+
+
+const display = document.querySelector('input[name="display"]');
+const buttons = document.querySelectorAll('input[type="button"]');
+
+// Loop through all buttons and add event listeners
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const value = button.value;
+
+    if (value === "ac") {
+      // Clear the display
+      display.value = "";
+    } else if (value === "de") {
+      // Delete the last character
+      display.value = display.value.slice(0, -1);
+    } else if (value === "=") {
+      // Evaluate the expression
+      try {
+        display.value = eval(display.value);
+      } catch (error) {
+        display.value = "Error";
+      }
+    } else {
+      // Add button value to the display
+      display.value += value;
+    }
+  });
+});
